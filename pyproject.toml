@@ -15,5 +15,23 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "identify>=2.6.19",
+    "mypy>=2.3.1",
     "pre-commit>=4.6.2",
+    "ruff>=0.16.5",
 ]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint]
+select = ["F", "I", "E", "B", "UP"]
