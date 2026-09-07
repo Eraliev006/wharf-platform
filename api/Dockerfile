@@ -44,4 +44,4 @@ ENTRYPOINT []
 
 USER nonroot
 
-CMD ["uv", "run", "fastapi", "dev", "--host", "0.0.0.0"]
+CMD ["fastapi", "dev", "--host", "0.0.0.0"]

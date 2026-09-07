@@ -1,0 +1,93 @@
+name: "wharf"
+
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: sync
+          path: ./api
+          target: /app
+          ignore:
+            - .venv/
+
+        - action: rebuild
+          path: ./api/pyproject.toml
+
+    env_file:
+      - ./api/.env
+    ports:
+      - "8000:8000"
+    restart: on-failure:3
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_healthy
+        restart: true
+
+  auth:
+    build:
+      context: auth
+      dockerfile: Dockerfile
+    env_file:
+      - ./auth/.env
+    ports:
+      - "8001:8001"
+    restart: on-failure:3
+    depends_on:
+      db:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_healthy
+        restart: true
+    develop:
+      watch:
+        - action: sync
+          path: ./auth
+          target: /app
+          ignore:
+            - .venv/
+
+        - action: rebuild
+          path: ./auth/pyproject.toml
+
+
+  db:
+    image: postgres:18.6
+    environment:
+      POSTGRES_USER: replace-user
+      POSTGRES_PASSWORD: replace-password
+      POSTGRES_DB: replace-db
+    ports:
+      - "5432:5432"
+    restart: on-failure:3
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  redis:
+    image: redis:alpine
+    restart: on-failure:3
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      retries: 3
+      timeout: 5s
+
+
+volumes:
+  postgres_data:
+  redis-data:
