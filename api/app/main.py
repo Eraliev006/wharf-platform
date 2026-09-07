@@ -1,2 +1,3 @@
-def main() -> None:
-    print("HELLO WORLD")
+from fastapi import FastAPI
+
+app = FastAPI()
