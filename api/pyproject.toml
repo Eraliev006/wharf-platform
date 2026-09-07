@@ -2,9 +2,9 @@
 name = "wharf-platform"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastapi[standard]>=0.141.1",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
 ]
@@ -25,6 +25,8 @@ dev = [
     "identify>=2.6.19",
     "mypy>=2.3.1",
     "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
     "ruff>=0.16.5",
 ]
 

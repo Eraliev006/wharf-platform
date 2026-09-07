@@ -1,0 +1,29 @@
+# ENVIRONMENTS
+.venv
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# GIT
+.git
+
+# IDEA
+.idea/
+
+# Ruff stuff:
+.ruff_cache/
+
+# MyPy stuff:
+.mypy_cache/
+
+# Pytests stuff:
+.pytest_cache/
+.coverage/htmlcov/
+
+.DS_Store
