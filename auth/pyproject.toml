@@ -4,8 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
+    "asyncpg>=0.31.0",
     "grpcio>=1.83.1",
     "grpcio-tools>=1.83.1",
+    "sqlalchemy[asyncio]>=2.0.52",
 ]
 
 [tool.uv.build-backend]

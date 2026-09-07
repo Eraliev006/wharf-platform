@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<EOF
+
+CREATE USER auth_user WITH PASSWORD '$AUTH_DB_PASSWORD';
+CREATE USER api_user WITH PASSWORD '$API_DB_PASSWORD';
+
+CREATE SCHEMA api;
+CREATE SCHEMA auth;
+EOF
