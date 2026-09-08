@@ -3,7 +3,7 @@ from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -11,25 +11,10 @@ class Settings(BaseSettings):
 
     app_env: Literal["local", "dev", "prod"]
 
-    db_name: str
-    db_password: str
-    db_user: str
-    db_host: str
-    db_port: int
+    db_url: str
 
     redis_host: str
     redis_port: int
-
-    google_client_id: str
-    google_client_secret: str
-    google_redirect_uri: str
-
-    github_client_id: str
-    github_client_secret: str
-    github_redirect_uri: str
-
-    jwt_secret_key: str
-    log_level: Literal["info", "dev"]
 
 
 settings = Settings()  # type: ignore
