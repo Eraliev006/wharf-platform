@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
+    "alembic>=1.19.2",
     "asyncpg>=0.31.0",
     "fastapi[standard]>=0.141.1",
     "pydantic>=2.13.5",
