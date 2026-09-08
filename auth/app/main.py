@@ -1,2 +1,2 @@
-def main():
+def main() -> None:
     print("HELLO WORLD AUTH")
