@@ -42,6 +42,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 ENTRYPOINT []
 
+RUN chown -R nonroot:nonroot /app
 USER nonroot
 
 CMD ["fastapi", "dev", "--host", "0.0.0.0"]

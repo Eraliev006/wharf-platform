@@ -37,6 +37,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 ENTRYPOINT []
 
+RUN chown -R nonroot:nonroot /app
 USER nonroot
 
 CMD ["echo", "Hello World"]
