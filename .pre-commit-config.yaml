@@ -16,8 +16,18 @@ repos:
 
   - repo: local
     hooks:
-      - id: mypy
-        name: mypy
-        entry: uv run mypy
+      - id: mypy-api
+        name: mypy api
+        entry: bash -c 'cd api && uv run mypy .'
         language: system
+        files: ^api/
+        pass_filenames: false
+        types: [python]
+
+      - id: mypy-auth
+        name: mypy auth
+        entry: bash -c 'cd auth && uv run mypy .'
+        language: system
+        files: ^auth/
+        pass_filenames: false
         types: [python]
