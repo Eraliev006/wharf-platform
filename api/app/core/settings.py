@@ -11,6 +11,8 @@ class Settings(BaseSettings):
 
     app_env: Literal["local", "dev", "prod"]
 
+    api_version: str = "v1"
+
     db_url: str
 
     redis_host: str
