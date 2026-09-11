@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     redis_host: str
     redis_port: int
+    log_level: Literal["INFO", "DEBUG", "WARNING", "ERROR", "CRITICAL"] = "INFO"
 
 
 settings = Settings()  # type: ignore
