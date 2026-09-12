@@ -1,1 +1,67 @@
 
+name: CI AUTH
+
+on:
+  push:
+    paths: [auth/**]
+  pull_request:
+    paths: [auth/**]
+
+jobs:
+  lint:
+    name: Check lint, format and typing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install UV
+        uses: astral-sh/setup-uv@v9
+        with:
+           enable-cache: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install the Project
+        run: uv sync --locked --all-extras --
+
+      - name: Run lint
+        run: uv run ruff check .
+
+      - name: Run formatting
+        run: uv run ruff format .
+
+      - name: Run MyPy
+        run: uv run mypy .
+
+  auth-test:
+    name: Run pytests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install UV
+        uses: astral-sh/setup-uv@v9
+        with:
+           enable-cache: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install the Project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run all tests
+        run: uv run pytest -v
