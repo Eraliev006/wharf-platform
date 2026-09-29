@@ -146,6 +146,8 @@ dev = [
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
+    { name = "types-grpcio" },
+    { name = "types-protobuf" },
 ]
 
 [package.metadata]
@@ -166,6 +168,8 @@ dev = [
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-asyncio", specifier = ">=1.4.0" },
     { name = "ruff", specifier = ">=0.16.6" },
+    { name = "types-grpcio", specifier = ">=1.84.0.20260928" },
+    { name = "types-protobuf", specifier = ">=7.35.1.20260906" },
 ]
 
 [[package]]
@@ -879,6 +883,24 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5e/89/b4a0bcfdf4f71a3dea31379f095929613d7e4528a0996bca6aa964cd0dca/structlog-26.1.0.tar.gz", hash = "sha256:f63a716cbd1b1291cf7661de7794b455acfa4c43c5bcf1630e6ad5ddc1adb3b7", size = 1459881, upload-time = "2026-06-06T07:33:39.348Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a9/18/489c97b834dfff9cf2fc2507cede4bcd4b11e67f84bc462acd1992496f86/structlog-26.1.0-py3-none-any.whl", hash = "sha256:e081a26d6c373e6d201eca24eede26d8ffab07f88f477822e679183428d3d91e", size = 73764, upload-time = "2026-06-06T07:33:38.046Z" },
+]
+
+[[package]]
+name = "types-grpcio"
+version = "1.84.0.20260928"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/db/c27d359c03c8d77917599d046d436424d74b08fb7e657c26d593912adb12/types_grpcio-1.84.0.20260928.tar.gz", hash = "sha256:eacb229deeb94e23a37c7ed0dd739dd2098ee63c7e432cc88340109ae3ad2fc1", size = 15892, upload-time = "2026-09-28T07:50:44.444Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/74/f2/0a9f21ae6db691facba76d7443ebb26c016e28ce2fa094642ca4a899e15b/types_grpcio-1.84.0.20260928-py3-none-any.whl", hash = "sha256:f0b54cbed12cf8fb0d8e6e7e699562da06515ca5a88014a209bf75780d6d1145", size = 15965, upload-time = "2026-09-28T07:50:43.62Z" },
+]
+
+[[package]]
+name = "types-protobuf"
+version = "7.35.1.20260906"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e1/6c/e3e5b3e10bc328126a39637c138f9ebfd734bf14342b9f3540039b4ab995/types_protobuf-7.35.1.20260906.tar.gz", hash = "sha256:efd1a3862d4c967dad5512ef8d56b1530ac84f182c41735b94004756518c4998", size = 69895, upload-time = "2026-09-06T06:35:28.308Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/4e/f63e826c68f77ef875506d72f225918800346545ee99847bc28f3394f18d/types_protobuf-7.35.1.20260906-py3-none-any.whl", hash = "sha256:5155e48569e0dabff303fdf578db96cd31ea9a4a63b18018a4ceac6b0ae17462", size = 86419, upload-time = "2026-09-06T06:35:27.247Z" },
 ]
 
 [[package]]

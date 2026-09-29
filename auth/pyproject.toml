@@ -28,6 +28,8 @@ dev = [
     "pytest>=9.1.1",
     "pytest-asyncio>=1.4.0",
     "ruff>=0.16.6",
+    "types-grpcio>=1.84.0.20260928",
+    "types-protobuf>=7.35.1.20260906",
 ]
 
 [project.scripts]
@@ -36,6 +38,13 @@ auth = "app.main:main"
 [tool.mypy]
 python_version = "3.13"
 strict = true
+exclude = [
+    "app/generated/",
+]
+
+[[tool.mypy.overrides]]
+module = "app.generated.*"
+follow_imports = "skip"
 
 [tool.ruff]
 target-version = "py313"
