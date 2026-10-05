@@ -47,6 +47,12 @@ jobs:
   api-test:
     name: Run pytests
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: local
+      DB_URL: postgresql://test_user:test_pwd@localhost:5432/test_db
+      REDIS_HOST: localhost
+      REDIS_PORT: 6439
+      LOG_LEVEL: INFO
 
     steps:
       - uses: actions/checkout@v6
