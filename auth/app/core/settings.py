@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     github_redirect_uri: str
 
     jwt_secret_key: str
-    log_level: Literal["info", "dev"]
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
 
 settings = Settings()  # type: ignore
