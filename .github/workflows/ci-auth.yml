@@ -48,6 +48,19 @@ jobs:
   auth-test:
     name: Run pytests
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: local
+      DB_URL: postgresql+asyncpg://test:test@localhost:5432/test
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      GOOGLE_CLIENT_ID: test-client-id
+      GOOGLE_CLIENT_SECRET: test-secret
+      GOOGLE_REDIRECT_URI: http://localhost/callback
+      GITHUB_CLIENT_ID: test-cleint-id
+      GITHUB_CLIENT_SECRET: test-secret
+      GITHUB_REDIRECT_URI: http://localhost/callback
+      JWT_SECRET_KEY: test-secret-key
+      LOG_LEVEL: INFO
 
     steps:
       - uses: actions/checkout@v6

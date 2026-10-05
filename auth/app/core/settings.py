@@ -28,4 +28,4 @@ class Settings(BaseSettings):
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
 
-settings = Settings()  # type: ignore
+settings = Settings()

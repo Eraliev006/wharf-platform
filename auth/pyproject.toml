@@ -38,6 +38,7 @@ auth = "app.main:main"
 
 [tool.mypy]
 python_version = "3.13"
+plugins = "pydantic.mypy"
 strict = true
 exclude = [
     "app/generated/",
