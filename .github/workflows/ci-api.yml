@@ -2,9 +2,13 @@
 name: API CI
 on:
   push:
-    paths: [api/**]
+    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, ./github/workflows/ci-api.yml]
   pull_request:
-    paths: [api/**]
+    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, ./github/workflows/ci-api.yml]
+
+defaults:
+  run:
+    working-directory: ./api
 
 jobs:
   lint:
@@ -15,14 +19,15 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Install UV
-        uses: astral-sh/setup-uv@v9
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7
         with:
            enable-cache: true
+           cahce-depenendency-glob: api/uv.lock
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: ".python-version"
+          python-version-file: api/.python-version;
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
@@ -34,7 +39,7 @@ jobs:
         run: uv run ruff check .
 
       - name: Run formatting
-        run: uv run ruff format .
+        run: uv run ruff format --check .
 
       - name: Run MyPy
         run: uv run mypy .
