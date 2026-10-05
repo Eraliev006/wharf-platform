@@ -25,6 +25,13 @@ class Settings(BaseSettings):
     github_redirect_uri: str
 
     jwt_secret_key: str
+
+    # Save in different ways for easy reading
+    jwt_access_token_ttl_min: int
+    jwt_refresh_token_ttl_day: int
+
+    grpc_server_port: int = 50051
+
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
 

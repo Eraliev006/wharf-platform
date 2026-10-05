@@ -59,7 +59,10 @@ jobs:
       GITHUB_CLIENT_ID: test-cleint-id
       GITHUB_CLIENT_SECRET: test-secret
       GITHUB_REDIRECT_URI: http://localhost/callback
-      JWT_SECRET_KEY: test-secret-key
+      JWT_SECRET_KEY: test-secret-
+      JWT_ACCESS_TOKEN_TTL_MIN: 15
+      JWT_REFRESH_TOKEN_TTL_DAY: 15
+      GRPC_SERVER_PORT: 50051
       LOG_LEVEL: INFO
 
     steps:
