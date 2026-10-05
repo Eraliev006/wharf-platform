@@ -27,8 +27,8 @@ class Settings(BaseSettings):
     jwt_secret_key: str
 
     # Save in different ways for easy reading
-    jwt_access_token_ttl_min: int
-    jwt_refresh_token_ttl_day: int
+    jwt_access_token_ttl_min: int = 15
+    jwt_refresh_token_ttl_day: int = 7
 
     grpc_server_port: int = 50051
 
