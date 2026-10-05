@@ -64,3 +64,10 @@ indent-style = "space"
 
 [tool.ruff.lint]
 select = ["F", "I", "E", "B", "UP"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths=["tests"]
+markers = [
+    "smoke: fast check that app is building"
+]
