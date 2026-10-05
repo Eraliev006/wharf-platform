@@ -23,5 +23,5 @@ class User(Base):
     profile_picture: Mapped[str | None] = mapped_column(String)
 
     providers: Mapped[list["OAuthProvider"]] = relationship(
-        "OAuthProvider", back_populates="user"
+        "OAuthProvider", back_populates="user", lazy="raise"
     )

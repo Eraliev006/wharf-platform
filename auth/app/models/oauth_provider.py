@@ -33,4 +33,6 @@ class OAuthProvider(Base):
     )
     provider_id: Mapped[str] = mapped_column(String, nullable=False)
 
-    user: Mapped["User"] = relationship("User", back_populates="providers")
+    user: Mapped["User"] = relationship(
+        "User", back_populates="providers", lazy="raise"
+    )
