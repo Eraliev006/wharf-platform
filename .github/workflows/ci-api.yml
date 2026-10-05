@@ -2,9 +2,9 @@
 name: CI API
 on:
   push:
-    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, .github/workflows/ci-api.yml]
+    paths: [api/**, proto/api/**, codegen/generate_api.sh, .github/workflows/ci-api.yml]
   pull_request:
-    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, .github/workflows/ci-api.yml]
+    paths: [api/**, proto/api/**, codegen/generate_api.sh, .github/workflows/ci-api.yml]
 
 defaults:
   run:
@@ -51,7 +51,7 @@ jobs:
       APP_ENV: local
       DB_URL: postgresql://test_user:test_pwd@localhost:5432/test_db
       REDIS_HOST: localhost
-      REDIS_PORT: 6439
+      REDIS_PORT: 6379
       LOG_LEVEL: INFO
 
     steps:
