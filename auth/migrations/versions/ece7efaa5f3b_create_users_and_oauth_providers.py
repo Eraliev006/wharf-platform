@@ -28,7 +28,7 @@ def upgrade() -> None:
         sa.Column("email", sa.String(), nullable=True),
         sa.Column("username", sa.String(length=50), nullable=False),
         sa.Column("profile_picture", sa.String(), nullable=True),
-        sa.PrimaryKeyConstraint("id"),
+        sa.PrimaryKeyConstraint("id", name="users_pkey"),
         schema="auth",
     )
     op.create_index(
@@ -44,9 +44,18 @@ def upgrade() -> None:
             nullable=False,
         ),
         sa.Column("provider_id", sa.String(), nullable=False),
-        sa.ForeignKeyConstraint(["user_id"], ["auth.users.id"], ondelete="CASCADE"),
-        sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("provider", "provider_id"),
+        sa.ForeignKeyConstraint(
+            ["user_id"],
+            ["auth.users.id"],
+            name="oauth_providers_user_id_fkey",
+            ondelete="CASCADE",
+        ),
+        sa.PrimaryKeyConstraint("id", name="oauth_providers_pkey"),
+        sa.UniqueConstraint(
+            "provider",
+            "provider_id",
+            name="oauth_providers_provider_provider_id_key",
+        ),
         schema="auth",
     )
     # ### end Alembic commands ###
