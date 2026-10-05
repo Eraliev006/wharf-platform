@@ -7,9 +7,12 @@ dependencies = [
     "alembic>=1.19.2",
     "asyncpg>=0.31.0",
     "grpcio>=1.83.1",
-    "grpcio-tools>=1.83.1",
+    "grpcio-health-checking>=1.83.1",
+    "httpx2>=2.13.1",
     "pydantic-settings>=2.15.0",
     "pydantic[email]>=2.13.5",
+    "pyjwt>=2.15.1",
+    "redis>=8.1.0",
     "sqlalchemy[asyncio]>=2.0.52",
     "structlog>=26.1.0",
 ]
@@ -24,6 +27,7 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "grpcio-tools>=1.83.1",
     "mypy>=2.3.1",
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
