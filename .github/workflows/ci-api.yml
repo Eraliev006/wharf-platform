@@ -1,10 +1,10 @@
 
-name: API CI
+name: CI API
 on:
   push:
-    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, ./github/workflows/ci-api.yml]
+    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, .github/workflows/ci-api.yml]
   pull_request:
-    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, ./github/workflows/ci-api.yml]
+    paths: [api/**, proto/api/**, codegen/api/generate_api.sh, .github/workflows/ci-api.yml]
 
 defaults:
   run:
@@ -22,12 +22,12 @@ jobs:
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7
         with:
            enable-cache: true
-           cahce-depenendency-glob: api/uv.lock
+           cache-dependency-glob: api/uv.lock
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: api/.python-version;
+          python-version-file: api/.python-version
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
@@ -52,14 +52,15 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Install UV
-        uses: astral-sh/setup-uv@v9
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7
         with:
            enable-cache: true
+           cache-dependency-glob: api/uv.lock
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: ".python-version"
+          python-version-file: "api/.python-version"
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
