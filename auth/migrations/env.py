@@ -2,6 +2,7 @@ import asyncio
 from logging.config import fileConfig
 
 from alembic import context
+from alembic.runtime.environment import NameFilterParentNames, NameFilterType
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
@@ -29,7 +30,7 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-config.get_main_option("sqlalchemy.url", settings.db_url)
+config.set_main_option("sqlalchemy.url", settings.db_url)
 
 
 def run_migrations_offline() -> None:
@@ -56,8 +57,29 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
+def include_name(
+    name: str | None,
+    type_: NameFilterType,
+    parent_names: NameFilterParentNames,
+) -> bool:
+    if type_ == "schema":
+        return name == "auth"
+
+    return True
+
+
 def do_run_migrations(connection: Connection) -> None:
-    context.configure(connection=connection, target_metadata=target_metadata)
+    connection.exec_driver_sql("SET search_path TO public")
+    connection.dialect.default_schema_name = "public"
+    connection.commit()
+
+    context.configure(
+        connection=connection,
+        target_metadata=target_metadata,
+        include_schemas=True,
+        include_name=include_name,
+        version_table_schema="auth",
+    )
 
     with context.begin_transaction():
         context.run_migrations()
