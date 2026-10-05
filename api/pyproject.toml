@@ -9,6 +9,7 @@ dependencies = [
     "fastapi[standard]>=0.141.1",
     "grpcio>=1.84.0",
     "grpcio-tools>=1.84.0",
+    "httpx2>=2.13.1",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
     "sqlalchemy[asyncio]>=2.0.52",
@@ -50,3 +51,11 @@ indent-style = "space"
 
 [tool.ruff.lint]
 select = ["F", "I", "E", "B", "UP"]
+
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths=["tests"]
+markers = [
+    "smoke: fast check that app is building"
+]
