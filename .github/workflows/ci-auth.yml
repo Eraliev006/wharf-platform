@@ -29,7 +29,7 @@ jobs:
         run: python -c "import sys; print(sys.version)"
 
       - name: Install the Project
-        run: uv sync --locked --all-extras --
+        run: uv sync --locked --all-extras --dev
 
       - name: Run lint
         run: uv run ruff check .
