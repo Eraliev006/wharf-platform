@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package auth.v1;
+
+service AuthService {
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc GetMe(GetMeRequest) returns (GetMeResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+}
+
+message RefreshTokenRequest {
+    string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message LoginRequest {
+    string code = 1;
+
+    enum OAuthProvider {
+        OAUTH_PROVIDER_UNSPECIFIED = 0;
+        OAUTH_PROVIDER_GOOGLE = 1;
+        OAUTH_PROVIDER_GITHUB = 2;
+    }
+
+    OAuthProvider provider = 2;
+}
+
+message LoginResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+message GetMeRequest {}
+
+message LogoutRequest {}
+
+message LogoutResponse {
+    string message = 1;
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string username = 3;
+    string profile_picture = 4;
+}
+
+message GetMeResponse {
+    User user = 1;
+}

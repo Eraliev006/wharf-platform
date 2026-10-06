@@ -25,7 +25,14 @@ class Settings(BaseSettings):
     github_redirect_uri: str
 
     jwt_secret_key: str
-    log_level: Literal["info", "dev"]
+
+    # Save in different ways for easy reading
+    jwt_access_token_ttl_min: int = 15
+    jwt_refresh_token_ttl_day: int = 7
+
+    grpc_server_port: int = 50051
+
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
 
-settings = Settings()  # type: ignore
+settings = Settings()
