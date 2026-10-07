@@ -25,6 +25,3 @@ class TestSettings(BaseSettings):
             raise ValueError("DB name not in white list")
 
         return value
-
-
-test_settings = TestSettings()
