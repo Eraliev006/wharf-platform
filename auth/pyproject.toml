@@ -54,7 +54,7 @@ module = "app.generated.*"
 follow_imports = "skip"
 
 [[tool.mypy.overrides]]
-module = "app.services.auth_servicer"
+module = "app.services.servicer"
 disallow_subclassing_any = false
 
 [tool.ruff]
