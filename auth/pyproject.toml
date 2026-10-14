@@ -35,6 +35,7 @@ dev = [
     "pytest-asyncio>=1.4.0",
     "ruff>=0.16.6",
     "types-grpcio>=1.84.0.20260928",
+    "types-grpcio-reflection>=1.0.0.20260508",
     "types-protobuf>=7.35.1.20260906",
 ]
 
@@ -48,10 +49,13 @@ strict = true
 exclude = [
     "app/generated/",
 ]
-
 [[tool.mypy.overrides]]
 module = "app.generated.*"
 follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = "grpc_health.*"
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "app.services.servicer"

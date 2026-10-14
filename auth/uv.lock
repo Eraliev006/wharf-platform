@@ -166,6 +166,7 @@ dev = [
     { name = "pytest-asyncio" },
     { name = "ruff" },
     { name = "types-grpcio" },
+    { name = "types-grpcio-reflection" },
     { name = "types-protobuf" },
 ]
 
@@ -194,6 +195,7 @@ dev = [
     { name = "pytest-asyncio", specifier = ">=1.4.0" },
     { name = "ruff", specifier = ">=0.16.6" },
     { name = "types-grpcio", specifier = ">=1.84.0.20260928" },
+    { name = "types-grpcio-reflection", specifier = ">=1.0.0.20260508" },
     { name = "types-protobuf", specifier = ">=7.35.1.20260906" },
 ]
 
@@ -1053,6 +1055,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/29/db/c27d359c03c8d77917599d046d436424d74b08fb7e657c26d593912adb12/types_grpcio-1.84.0.20260928.tar.gz", hash = "sha256:eacb229deeb94e23a37c7ed0dd739dd2098ee63c7e432cc88340109ae3ad2fc1", size = 15892, upload-time = "2026-09-28T07:50:44.444Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/74/f2/0a9f21ae6db691facba76d7443ebb26c016e28ce2fa094642ca4a899e15b/types_grpcio-1.84.0.20260928-py3-none-any.whl", hash = "sha256:f0b54cbed12cf8fb0d8e6e7e699562da06515ca5a88014a209bf75780d6d1145", size = 15965, upload-time = "2026-09-28T07:50:43.62Z" },
+]
+
+[[package]]
+name = "types-grpcio-reflection"
+version = "1.0.0.20260508"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "types-grpcio" },
+    { name = "types-protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bc/e9/110a5eea2fbce2bfff98c0e3159acdf5dd1757415d643dcb5651c07c5f25/types_grpcio_reflection-1.0.0.20260508.tar.gz", hash = "sha256:c346c7149093982f322f4374264800bb4f6ea6eed95e9e79427f1fef036bfaaf", size = 9162, upload-time = "2026-05-08T04:51:14.946Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c5/56/d8d952b168fda49d8582dba893956b93668bce87e090075b110caeadc431/types_grpcio_reflection-1.0.0.20260508-py3-none-any.whl", hash = "sha256:1f6eb27e9a6b19614f8bb2e7db409f3039099fb5f250a0f3c340fe973139ae0e", size = 11037, upload-time = "2026-05-08T04:51:14.12Z" },
 ]
 
 [[package]]
