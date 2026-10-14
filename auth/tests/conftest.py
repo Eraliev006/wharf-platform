@@ -2,12 +2,15 @@ from collections.abc import AsyncGenerator, AsyncIterator, Generator
 from pathlib import Path
 from uuid import uuid4
 
+import grpc
 import pytest
 import pytest_asyncio
 from alembic import command
 from alembic.config import Config
+from grpc_health.v1 import health, health_pb2
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, create_async_engine
 
+from app.main import create_server
 from app.models import OAuthProvider, User
 from app.models.oauth_provider import OAuthProviders
 from app.repository import OAuthProviderRepository, UserRepository
@@ -93,3 +96,18 @@ async def test_user_with_oauth_provider(
         provider_in, test_user.id
     )
     return test_user, provider
+
+
+@pytest_asyncio.fixture(scope="function")
+async def test_server_health() -> AsyncIterator[
+    tuple[grpc.aio.Server, health.aio.HealthServicer, int]
+]:
+    server, health_service, port = await create_server(0)
+    await server.start()
+    await health_service.set(
+        service="auth.v1.AuthService", status=health_pb2.HealthCheckResponse.SERVING
+    )
+
+    yield server, health_service, port
+
+    await server.stop(grace=5)
