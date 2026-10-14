@@ -1,6 +1,9 @@
+import asyncio
+import signal
+
 import grpc
 import structlog
-from grpc_health.v1 import health, health_pb2_grpc
+from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 from grpc_reflection.v1alpha import reflection
 
 from app.core import configure_logger, settings
@@ -31,7 +34,27 @@ def create_server(
     return (server, health_servicer, bound_port)
 
 
+async def serve() -> None:
+    server, health_servicer, port = create_server(settings.grpc_server_port)
+
+    log.info("start_server")
+    await server.start()
+    await health_servicer.set(
+        service="auth.v1.AuthService", status=health_pb2.HealthCheckResponse.SERVING
+    )
+    log.info("server_started", port=port)
+
+    stop = asyncio.Event()
+    loop = asyncio.get_running_loop()
+    for sig in (signal.SIGTERM, signal.SIGINT):
+        loop.add_signal_handler(sig, stop.set)
+    await stop.wait()
+    await health_servicer.enter_graceful_shutdown()
+    await server.stop(grace=5)
+    log.info("server_stopped")
+
+
 def main() -> None:
     configure_logger()
     log.info("Started app")
-    print("HELLO WORLD AUTH")
+    asyncio.run(serve())
