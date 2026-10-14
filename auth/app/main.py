@@ -10,21 +10,21 @@ from app.services.servicer import AuthServicer
 log = structlog.get_logger()
 
 
-async def create_server(
-    port: int = settings.grpc_server_port,
+def create_server(
+    port: int,
 ) -> tuple[grpc.aio.Server, health.aio.HealthServicer, int]:
     server = grpc.aio.server()
-    SERVICE_NAMES = (
-        auth_pb2.DESCRIPTOR.services_by_name["AuthService"].full_name,
-        reflection.SERVICE_NAME,
-        health.SERVICE_NAME,
-    )
     auth_pb2_grpc.add_AuthServiceServicer_to_server(AuthServicer(), server)
     health_servicer = health.aio.HealthServicer()
     health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
     if settings.app_env == "local" or settings.app_env == "dev":
+        service_names = (
+            auth_pb2.DESCRIPTOR.services_by_name["AuthService"].full_name,
+            reflection.SERVICE_NAME,
+            health.SERVICE_NAME,
+        )
         log.info("reflection enabled", app_env=settings.app_env)
-        reflection.enable_server_reflection(SERVICE_NAMES, server)
+        reflection.enable_server_reflection(service_names, server)
 
     bound_port = server.add_insecure_port(f"[::]:{port}")
 

@@ -102,7 +102,7 @@ async def test_user_with_oauth_provider(
 async def test_server_health() -> AsyncIterator[
     tuple[grpc.aio.Server, health.aio.HealthServicer, int]
 ]:
-    server, health_service, port = await create_server(0)
+    server, health_service, port = create_server(0)
     await server.start()
     await health_service.set(
         service="auth.v1.AuthService", status=health_pb2.HealthCheckResponse.SERVING
