@@ -29,6 +29,8 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --locked --no-install-project
 
+COPY --from=ghcr.io/grpc-ecosystem/grpc-health-probe:v0.4.38 /ko-app/grpc-health-probe /bin/grpc_health_probe
+
 COPY . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
@@ -40,4 +42,4 @@ ENTRYPOINT []
 RUN chown -R nonroot:nonroot /app
 USER nonroot
 
-CMD ["echo", "Hello World"]
+CMD ["auth"]
