@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -24,7 +25,7 @@ class Settings(BaseSettings):
     github_client_secret: str
     github_redirect_uri: str
 
-    jwt_secret_key: str
+    jwt_secret_key: str = Field(min_length=32)
 
     # Save in different ways for easy reading
     jwt_access_token_ttl_min: int = 15
